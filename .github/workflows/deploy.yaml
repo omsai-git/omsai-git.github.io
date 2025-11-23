@@ -28,7 +28,7 @@ jobs:
       # 5.Build and deploy react app using gh-pages package
       - name: Deploy
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy
 
       
