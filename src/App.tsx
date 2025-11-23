@@ -4,13 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(Number(localStorage.getItem('count') || 0))
+ const [count, setCount] = useState(() => {
+    const saved = localStorage.getItem('count');
+    return saved ? Number(saved) : 0;
+  });
 
   const updateCount = useCallback(() => {
-    let updatedCount = count + 1;
-    localStorage.setItem('count', String(updatedCount))
-    setCount(updatedCount)
-  }, [count])
+    const updatedCount = count + 1;
+    setCount(updatedCount);
+    localStorage.setItem('count', String(updatedCount));
+  }, [count]);
+
 
   return (
     <>
