@@ -29,7 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 5.Build and deploy react app using gh-pages package
+      # 4. Configure git user
+      - name: Configure git user
+        run: |
+          git config --global user.name "omsai-git"
+          git config --global user.email "omsai.kusuma@gmail.com"
+
+      # 5. Build and deploy react app using gh-pages package
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
