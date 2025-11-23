@@ -4,17 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
- const [count, setCount] = useState(() => {
-    const saved = localStorage.getItem('count');
-    return saved ? Number(saved) : 0;
-  });
+  const [count, setCount] = useState(()=>Number(localStorage.getItem('count') || 0))
 
   const updateCount = useCallback(() => {
-    const updatedCount = count + 1;
-    setCount(updatedCount);
-    localStorage.setItem('count', String(updatedCount));
-  }, [count]);
+    let updatedCount = count + 1;
+    localStorage.setItem('count', String(updatedCount))
+    setCount(updatedCount)
+  }, [count])
 
+  const resetCounter = () => {
+    setCount(0);
+    localStorage.removeItem('count')
+  }
 
   return (
     <>
@@ -31,9 +32,9 @@ function App() {
         <button onClick={updateCount}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={resetCounter}>
+          Reset
+        </button>
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
