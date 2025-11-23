@@ -25,11 +25,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build react app
-      - name: Build react app
-        run: npm run Build
-
-      # 5. Deploy using gh-pages packages
+      # 5.Build and deploy react app using gh-pages package
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
